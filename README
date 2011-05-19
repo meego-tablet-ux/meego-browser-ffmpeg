@@ -1,0 +1,16 @@
+##############################################################################
+
+
+this is a clean version of ffmpeg from patch-ffmpeg-mt in chromium project:
+
+what supports:
+	1. pls refer to config.h in config/Chrome/linux/ia32/config.h
+	2. HTML5 Video:
+		a> OGG + Vorbis + Theora
+		b> WebM + VP8 + Vorbis
+		c> MP4 + H264 + AAC
+		d> WAV + PCM /*HTML5 Audio*/
+	3. the H264 code is enabled VAAPI support, refer to MPlayer-VAAPI project.
+
+how to build:
+	replace this folder in chromium build environment: third_part/ffmpeg/

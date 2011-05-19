@@ -1,0 +1,42 @@
+# Copyright (c) 2010 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+#
+# Functions from avcodec used in chromium code.
+
+AVCodecContext *avcodec_alloc_context(void);
+AVCodec *avcodec_find_decoder(enum CodecID id);
+AVFrame *avcodec_alloc_frame(void);
+int av_get_bits_per_sample_fmt(enum SampleFormat sample_fmt);
+int av_new_packet(AVPacket *pkt, int size);
+int avcodec_decode_audio3(AVCodecContext *avctx, int16_t *samples, int *frame_size_ptr, AVPacket *avpkt);
+int avcodec_decode_video2(AVCodecContext *avctx, AVFrame *picture, int *got_picture_ptr, AVPacket *avpkt);
+int avcodec_open(AVCodecContext *avctx, AVCodec *codec);
+int avcodec_close(AVCodecContext *avctx);
+int avcodec_thread_init(AVCodecContext *s, int thread_count);
+void av_free_packet(AVPacket *pkt);
+void av_init_packet(AVPacket *pkt);
+int av_dup_packet(AVPacket *pkt);
+void avcodec_flush_buffers(AVCodecContext *avctx);
+void avcodec_init(void);
+AVBitStreamFilterContext *av_bitstream_filter_init(const char *name);
+int av_bitstream_filter_filter(AVBitStreamFilterContext *bsfc, AVCodecContext *avctx, const char *args, uint8_t **poutbuf, int *poutbuf_size, const uint8_t *buf, int buf_size, int keyframe);
+void av_bitstream_filter_close(AVBitStreamFilterContext *bsf);
+void av_destruct_packet(AVPacket *pkt);
+int av_lockmgr_register(AVLockMgrOperation cb);
+
+# Export symbols for libvpx since Chromium is also using libvpx directly.
+vpx_codec_err_t vpx_codec_enc_config_default(vpx_codec_iface_t *iface, vpx_codec_enc_cfg_t *cfg, unsigned int usage);
+vpx_codec_err_t vpx_codec_enc_init_ver(vpx_codec_ctx_t *ctx, vpx_codec_iface_t *iface, vpx_codec_enc_cfg_t *cfg, vpx_codec_flags_t flags, int ver);
+vpx_codec_err_t vpx_codec_encode(vpx_codec_ctx_t *ctx, const vpx_image_t *img, vpx_codec_pts_t pts, unsigned long duration, vpx_enc_frame_flags_t flags, unsigned long deadline);
+const char *vpx_codec_error_detail(vpx_codec_ctx_t *ctx);
+const char *vpx_codec_error(vpx_codec_ctx_t *ctx);
+const char *vpx_codec_err_to_string(vpx_codec_err_t err);
+const vpx_codec_cx_pkt_t *vpx_codec_get_cx_data(vpx_codec_ctx_t *ctx, vpx_codec_iter_t *iter);
+vpx_codec_err_t vpx_codec_destroy(vpx_codec_ctx_t *ctx);
+vpx_codec_err_t vpx_codec_control_(vpx_codec_ctx_t *ctx, int ctrl_id, ...);
+vpx_codec_err_t vpx_codec_dec_init_ver(vpx_codec_ctx_t *ctx, vpx_codec_iface_t *iface, vpx_codec_dec_cfg_t *cfg, vpx_codec_flags_t flags, int ver);
+vpx_codec_err_t vpx_codec_decode(vpx_codec_ctx_t *ctx, const uint8_t *data, unsigned int data_sz, void *user_priv, long deadline);
+vpx_image_t *vpx_codec_get_frame(vpx_codec_ctx_t *ctx, vpx_codec_iter_t *iter);
+vpx_codec_iface_t* vpx_codec_vp8_cx(void);
+vpx_codec_iface_t* vpx_codec_vp8_dx(void);

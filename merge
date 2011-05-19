@@ -1,0 +1,24 @@
+#!/bin/sh	
+
+#src=/home/jkwu/work/chromium/mplayer-vaapi-20100713/mplayer-vaapi/libavcodec
+src=/home/jkwu/work/chromium/meego-tablet-mrst-1126/mplayer-old/mplayer-vaapi/libavcodec
+#dst=./patched-ffmpeg-mt/libavcodec
+dst=a
+
+
+ cp $src/h264_cavlc.c  $dst/.
+ cp $src/h264_direct.c  $dst/.
+ cp $src/h264_ps.c  $dst/.
+ cp $src/h264.c  $dst/.
+ cp $src/h264.h  $dst/.
+ cp $src/vaapi*.h  $dst/.
+ cp $src/vaapi*.c  $dst/.
+
+# h264_cavlc.c
+# h264_direct.c
+# h264_ps.c
+# h264.c
+# h264.h
+# vaapi*.h
+# vaapi*.c
+
